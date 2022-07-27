@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  sql-db:
+    container_name: postgre_container
+    image: postgres:13
+    environment:
+      POSTGRES_DB: nest
+      POSTGRES_USER: postgre
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - ./sql-db/postgres-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - aza
+
+  sql-db-test:
+    container_name: postgre_container_test
+    image: postgres:13
+    environment:
+      POSTGRES_DB: nest
+      POSTGRES_USER: postgre
+      POSTGRES_PASSWORD: 123
+    ports:
+      - '5433:5432'
+    networks:
+      - aza
+
+networks:
+  aza:
