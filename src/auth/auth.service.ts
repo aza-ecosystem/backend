@@ -1,5 +1,4 @@
 import { ForbiddenException, Injectable, Req } from '@nestjs/common';
-import { User, Post } from '@prisma/client';
 import { Request } from 'express';
 import { AuthDto } from './dto';
 import { hash, verify } from 'argon2';
@@ -12,7 +11,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class AuthService {
   constructor(private prisma: PrismaService, private jwtService: JwtService) {}
 
-  async validateUser(credential: AuthDto): Promise<User> {
+  async validateUser(credential: AuthDto): Promise<any> {
     const user = await this.prisma.user.findUnique({
       where: {
         username: credential.username,
